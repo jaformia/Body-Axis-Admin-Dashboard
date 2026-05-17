@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { 
   Search, 
   PlusCircle, 
@@ -80,9 +81,11 @@ export default function ExerciseLibraryPage() {
               className="w-full bg-[#111621] border border-slate-800 rounded-xl pl-10 pr-4 py-2.5 text-sm text-slate-300 focus:outline-none focus:ring-1 focus:ring-blue-500/50 placeholder:text-slate-600"
             />
           </div>
-          <button className="flex-shrink-0 flex items-center justify-center gap-2 bg-[#2563eb] hover:bg-[#1d4ed8] text-white px-5 py-2.5 rounded-xl font-bold text-sm transition-colors shadow-[0_0_20px_rgba(37,99,235,0.3)] cursor-pointer">
-            Add New Exercise <PlusCircle size={16} />
-          </button>
+          <Link href="/exercise-library/create">
+            <button className="flex-shrink-0 flex items-center justify-center gap-2 bg-[#2563eb] hover:bg-[#1d4ed8] text-white px-5 py-2.5 rounded-xl font-bold text-sm transition-colors shadow-[0_0_20px_rgba(37,99,235,0.3)] cursor-pointer">
+              Add New Exercise <PlusCircle size={16} />
+            </button>
+          </Link>
         </div>
       </div>
 
