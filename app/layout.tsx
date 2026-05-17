@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import "./globals.css";
 import Sidebar from "./Sidebar";
-import { Search, Bell } from "lucide-react";
+import { Bell } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Body Axis™ Dashboard",
@@ -28,17 +28,7 @@ export default function RootLayout({
         <div className="flex-1 flex flex-col h-screen overflow-hidden z-10 relative">
           {/* Top Bar Header */}
           <header className="h-20 border-b border-slate-800/40 bg-[#02050f]/80 backdrop-blur-md flex items-center justify-between px-8 sticky top-0 z-40">
-            {/* Search Input Box */}
-            <div className="flex-1 flex justify-start">
-              <div className="relative w-80">
-                <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" size={16} />
-                <input
-                  type="text"
-                  placeholder="Search..."
-                  className="w-full bg-[#080d22]/40 border border-slate-800/60 rounded-xl py-2 pl-11 pr-4 text-xs text-slate-300 placeholder:text-slate-500 focus:outline-none focus:border-blue-500/30 transition-all duration-300"
-                />
-              </div>
-            </div>
+            <div className="flex-1"></div>
 
             {/* Top Bar Actions on the Right */}
             <div className="flex items-center gap-5">
