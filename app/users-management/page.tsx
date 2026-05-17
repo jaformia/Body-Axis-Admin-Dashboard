@@ -1,4 +1,4 @@
-import { Users, Plus, Shield, Search, MoreVertical } from "lucide-react";
+import { Plus, Search, MoreVertical } from "lucide-react";
 
 export default function UsersManagementPage() {
   const users = [

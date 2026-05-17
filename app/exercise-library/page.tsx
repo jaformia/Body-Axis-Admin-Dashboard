@@ -1,4 +1,4 @@
-import { Dumbbell, Plus, Search, Tag, Eye } from "lucide-react";
+import { Plus, Tag, Eye } from "lucide-react";
 
 export default function ExerciseLibraryPage() {
   const categories = ["All Movements", "Spine Flexion", "Shoulder Rotation", "Hip Hinge", "Knee Extension", "Core Stability"];

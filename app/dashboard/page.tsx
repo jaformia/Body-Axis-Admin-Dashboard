@@ -1,13 +1,13 @@
 "use client";
 
 import { 
-  Users, 
   User,
   Flame, 
   Dumbbell, 
   Calendar,
   TrendingUp
 } from "lucide-react";
+import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 
 interface DashboardData {
@@ -402,7 +402,7 @@ export default function DashboardHome() {
                 {/* Outlined avatar photo */}
                 <div className="w-9 h-9 rounded-full border border-slate-800 bg-[#02050f]/60 overflow-hidden flex items-center justify-center flex-shrink-0">
                   {act.avatar ? (
-                    <img src={act.avatar} alt={act.user} className="w-full h-full object-cover" />
+                    <Image src={act.avatar} alt={act.user} width={36} height={36} className="w-full h-full object-cover" />
                   ) : (
                     <div className="w-full h-full bg-[#02050f]/60" />
                   )}

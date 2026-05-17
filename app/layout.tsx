@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import "./globals.css";
 import Sidebar from "./Sidebar";
 import { Search, Bell } from "lucide-react";
@@ -56,9 +57,11 @@ export default function RootLayout({
                   <p className="text-[9px] text-slate-500 font-bold uppercase tracking-wider mt-0.5">ADMIN</p>
                 </div>
                 <div className="w-9 h-9 rounded-full border border-slate-700 bg-slate-850 overflow-hidden flex items-center justify-center">
-                  <img
+                  <Image
                     src="/user.png"
                     alt="Alex Sterling"
+                    width={36}
+                    height={36}
                     className="w-full h-full object-cover"
                   />
                 </div>

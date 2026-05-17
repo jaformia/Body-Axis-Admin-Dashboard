@@ -1,4 +1,4 @@
-import { BarChart3, TrendingUp, Clock, ShieldCheck, Activity } from "lucide-react";
+import { BarChart3, Clock, ShieldCheck, Activity } from "lucide-react";
 
 export default function AnalyticsPage() {
   const metrics = [

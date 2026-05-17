@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -31,9 +32,11 @@ export default function Sidebar() {
     <aside className="w-72 bg-[#02050f] border-r border-slate-900/60 h-screen sticky top-0 flex flex-col p-6 z-50 select-none">
       {/* Brand logo */}
       <div className="mb-8 px-2 flex items-center justify-start">
-        <img 
+        <Image 
           src="/logo.png" 
           alt="Body Axis Logo" 
+          width={150}
+          height={56}
           className="h-14 object-contain w-auto select-none" 
         />
       </div>
@@ -42,7 +45,7 @@ export default function Sidebar() {
       <nav className="flex-1 space-y-1.5 pr-1">
         {menuItems.map((item) => {
           const Icon = item.icon;
-          const isActive = pathname === item.href || (item.href === "/dashboard" && pathname === "/");
+          const isActive = pathname === item.href || pathname.startsWith(`${item.href}/`) || (item.href === "/dashboard" && pathname === "/");
 
           return (
             <Link
