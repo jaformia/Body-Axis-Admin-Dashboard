@@ -140,13 +140,13 @@ export default function SubscriptionPage() {
           </div>
 
           {/* Yearly Plan Card */}
-          <div className="rounded-2xl p-6 border border-[#10b981]/20 bg-gradient-to-br from-[#064e3b]/80 to-[#022c22] relative overflow-hidden shadow-[0_0_30px_rgba(16,185,129,0.05)]">
+          <div className="rounded-2xl p-6 border border-[#3b82f6]/40 bg-gradient-to-br from-[#1e40af]/70 to-[#0b1329] relative overflow-hidden shadow-[0_0_30px_rgba(59,130,246,0.2)]">
             <div className="absolute top-6 right-6 pointer-events-none">
-              <BadgeCheck size={28} className="text-[#34d399] opacity-40" />
+              <BadgeCheck size={28} className="text-[#60a5fa] opacity-50" />
             </div>
             
             <div className="relative z-10">
-              <span className="inline-block px-3 py-1 bg-white/10 text-emerald-100 text-[10px] font-bold rounded-full mb-4">Best Value</span>
+              <span className="inline-block px-3 py-1 bg-blue-500/10 text-blue-200 border border-blue-500/20 text-[10px] font-bold rounded-full mb-4">Best Value</span>
               <h4 className="text-white font-extrabold text-[22px] mb-3 tracking-tight">Yearly Membership</h4>
               <div className="flex items-baseline gap-1 mb-8">
                 <span className="text-[40px] font-extrabold text-white leading-none tracking-tighter">$249</span>
@@ -154,12 +154,12 @@ export default function SubscriptionPage() {
               </div>
               
               <div className="grid grid-cols-2 gap-3">
-                <div className="bg-[#065f46]/40 rounded-xl p-3 border border-white/5">
-                  <span className="text-[10px] text-emerald-200/70 font-bold block mb-0.5">Subscribers</span>
+                <div className="bg-[#1e3a8a]/40 rounded-xl p-3 border border-white/5">
+                  <span className="text-[10px] text-blue-200/70 font-bold block mb-0.5">Subscribers</span>
                   <span className="text-[15px] font-extrabold text-white">4,038</span>
                 </div>
-                <div className="bg-[#065f46]/40 rounded-xl p-3 border border-white/5">
-                  <span className="text-[10px] text-emerald-200/70 font-bold block mb-0.5">Conversion</span>
+                <div className="bg-[#1e3a8a]/40 rounded-xl p-3 border border-white/5">
+                  <span className="text-[10px] text-blue-200/70 font-bold block mb-0.5">Conversion</span>
                   <span className="text-[15px] font-extrabold text-white">28%</span>
                 </div>
               </div>
@@ -197,7 +197,7 @@ export default function SubscriptionPage() {
                   <span className="text-[10px] font-bold tracking-wide uppercase text-slate-400">Monthly</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#34d399]"></div>
+                  <div className="w-2.5 h-2.5 rounded-full bg-[#60a5fa]"></div>
                   <span className="text-[10px] font-bold tracking-wide uppercase text-slate-400">Yearly</span>
                 </div>
               </div>

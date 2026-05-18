@@ -94,7 +94,7 @@ export default function ExerciseLibraryPage() {
         
         {/* TOTAL EXERCISES */}
         <div className="glass-card bg-[#0b1121] rounded-2xl p-6 border border-[#1e293b]/50 relative overflow-hidden group">
-          <Dumbbell className="absolute -bottom-4 -right-4 w-32 h-32 text-slate-800/30 -rotate-12 transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-6 pointer-events-none" />
+          <Dumbbell className="absolute -bottom-10 -right-8 w-32 h-32 text-slate-800/30 -rotate-12 transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-6 pointer-events-none" />
           <div className="relative z-10">
             <div className="w-8 h-8 rounded-lg bg-blue-500/10 flex items-center justify-center mb-4 border border-blue-500/20">
               <Dumbbell size={16} className="text-blue-400" />
@@ -106,7 +106,7 @@ export default function ExerciseLibraryPage() {
 
         {/* PUBLISHED EXERCISE */}
         <div className="glass-card bg-[#0b1121] rounded-2xl p-6 border border-[#1e293b]/50 relative overflow-hidden group">
-          <Flame className="absolute -bottom-4 -right-4 w-32 h-32 text-slate-800/30 -rotate-12 transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-6 pointer-events-none" />
+          <Flame className="absolute -bottom-10 -right-8 w-32 h-32 text-slate-800/30 -rotate-12 transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-6 pointer-events-none" />
           <div className="relative z-10">
             <div className="w-8 h-8 rounded-lg bg-[#10b981]/10 flex items-center justify-center mb-4 border border-[#10b981]/20">
               <Flame size={16} className="text-[#10b981]" />
@@ -118,7 +118,7 @@ export default function ExerciseLibraryPage() {
 
         {/* AVERAGE DURATION */}
         <div className="glass-card bg-[#0b1121] rounded-2xl p-6 border border-[#1e293b]/50 relative overflow-hidden group">
-          <Clock className="absolute -bottom-4 -right-4 w-32 h-32 text-slate-800/30 -rotate-12 transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-6 pointer-events-none" />
+          <Clock className="absolute -bottom-10 -right-8 w-32 h-32 text-slate-800/30 -rotate-12 transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-6 pointer-events-none" />
           <div className="relative z-10">
             <div className="w-8 h-8 rounded-lg bg-cyan-500/10 flex items-center justify-center mb-4 border border-cyan-500/20">
               <Clock size={16} className="text-cyan-400" />
@@ -130,7 +130,7 @@ export default function ExerciseLibraryPage() {
 
         {/* ACTIVE USERS */}
         <div className="glass-card bg-[#0b1121] rounded-2xl p-6 border border-[#1e293b]/50 relative overflow-hidden group">
-          <User className="absolute -bottom-4 -right-4 w-32 h-32 text-slate-800/30 -rotate-12 transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-6 pointer-events-none" />
+          <User className="absolute -bottom-10 -right-8 w-32 h-32 text-slate-800/30 -rotate-12 transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-6 pointer-events-none" />
           <div className="relative z-10">
             <div className="w-8 h-8 rounded-lg bg-[#8b5cf6]/10 flex items-center justify-center mb-4 border border-[#8b5cf6]/20">
               <User size={16} className="text-[#8b5cf6]" />

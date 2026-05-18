@@ -6,14 +6,14 @@ import { Plus, Flame, Dumbbell, Users, User, TrendingUp, Edit, Trash2, ArrowLeft
 
 // SVGs for card backgrounds
 const FlameOutline = () => (
-  <svg className="absolute -bottom-2 -right-3 w-32 h-32 text-slate-400/5 pointer-events-none z-0" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="2.8">
+  <svg className="absolute -bottom-8 -right-8 w-32 h-32 text-slate-400/5 pointer-events-none z-0" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="2.8">
     <path d="M50 85c18 0 28-12 28-28 0-22-16-38-28-43-12 5-28 21-28 43 0 16 10 28 28 28z" />
     <path d="M50 78c10 0 15-8 15-16 0-13-9-23-15-26-6 3-15 13-15 26 0 8 5 16 15 16z" />
   </svg>
 );
 
 const DumbbellOutline = () => (
-  <svg className="absolute -bottom-2 -right-3 w-32 h-32 text-slate-400/5 pointer-events-none z-0" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="2.8">
+  <svg className="absolute -bottom-8 -right-8 w-32 h-32 text-slate-400/5 pointer-events-none z-0" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="2.8">
     <rect x="44" y="10" width="12" height="80" rx="3" />
     <rect x="22" y="25" width="22" height="50" rx="5" />
     <rect x="56" y="25" width="22" height="50" rx="5" />
@@ -23,7 +23,7 @@ const DumbbellOutline = () => (
 );
 
 const UsersOutline = () => (
-  <svg className="absolute -bottom-4 -right-4 w-36 h-36 text-slate-400/5 pointer-events-none z-0" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" strokeWidth="3" strokeLinecap="round">
+  <svg className="absolute -bottom-10 -right-10 w-36 h-36 text-slate-400/5 pointer-events-none z-0" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" strokeWidth="3" strokeLinecap="round">
     <circle cx="50" cy="32" r="10" />
     <path d="M32 20c-5 5-5 19 0 24" />
     <path d="M68 20c5 5 5 19 0 24" />
@@ -34,7 +34,7 @@ const UsersOutline = () => (
 );
 
 const UserOutline = () => (
-  <svg className="absolute -bottom-3 -right-3 w-32 h-32 text-slate-400/5 pointer-events-none z-0" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="2.8">
+  <svg className="absolute -bottom-8 -right-8 w-32 h-32 text-slate-400/5 pointer-events-none z-0" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="2.8">
     <circle cx="50" cy="38" r="18" />
     <path d="M15 78c0-12 15-22 35-22s35 10 35 22" />
   </svg>

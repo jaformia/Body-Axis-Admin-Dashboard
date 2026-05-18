@@ -237,7 +237,7 @@ export default function DashboardHome() {
                 type="date"
                 value={startDate}
                 onChange={(e) => setStartDate(e.target.value)}
-                className="bg-transparent border-none text-white focus:outline-none cursor-pointer color-scheme-dark hover:text-white transition-colors text-[13px] font-medium w-24"
+                className="bg-transparent border-none text-white focus:outline-none cursor-pointer color-scheme-dark hover:text-white transition-colors text-[13px] font-medium w-24 style-date-input"
                 style={{ colorScheme: "dark" }}
               />
               <span className="text-[#5A7090] font-medium text-[12px] px-1 select-none">to</span>
@@ -246,7 +246,7 @@ export default function DashboardHome() {
                 type="date"
                 value={endDate}
                 onChange={(e) => setEndDate(e.target.value)}
-                className="bg-transparent border-none text-white focus:outline-none cursor-pointer color-scheme-dark hover:text-white transition-colors text-[13px] font-medium w-24"
+                className="bg-transparent border-none text-white focus:outline-none cursor-pointer color-scheme-dark hover:text-white transition-colors text-[13px] font-medium w-24 style-date-input"
                 style={{ colorScheme: "dark" }}
               />
               <button 
@@ -282,12 +282,25 @@ export default function DashboardHome() {
         <div className="h-[280px] flex items-end justify-between gap-3 px-2 pt-8 w-full z-10 border-b border-[#1A2640]/50 pb-3 mt-4">
           {activeChartData.map((item, index) => (
             <div key={index} className="flex-1 flex flex-col items-center group relative h-full justify-end w-full">
+              {/* Floating Tooltip */}
+              <div 
+                className="absolute bg-[#0F172A]/95 backdrop-blur-md border border-[#1A2640] px-3 py-1.5 rounded-lg shadow-xl opacity-0 scale-90 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 transition-all duration-200 ease-out z-30 flex flex-col items-center gap-0.5 min-w-[80px]"
+                style={{ 
+                  bottom: `calc(${item.height} + 12px)`
+                }}
+              >
+                <span className="text-[10px] text-[#2DD4BF] font-bold uppercase tracking-wider">{item.date}</span>
+                <span className="text-white text-xs font-bold whitespace-nowrap">{item.value} Sessions</span>
+                {/* Tooltip arrow */}
+                <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-[#0F172A] border-r border-b border-[#1A2640] rotate-45" />
+              </div>
+
               {/* Bar */}
               <div 
-                className={`w-full max-w-[65px] rounded-t-md transition-all duration-700 ease-in-out ${
+                className={`w-full max-w-[65px] rounded-t-md transition-all duration-700 ease-in-out animate-bar-grow origin-bottom group-hover:scale-y-[1.03] group-hover:brightness-110 ${
                   item.isHighlighted 
-                    ? "bg-gradient-to-b from-[#9945FF] to-[#19FB9B]" 
-                    : "bg-gradient-to-b from-[#5243aa]/40 to-[#14f195]/40 group-hover:from-[#5243aa]/70 group-hover:to-[#14f195]/70"
+                    ? "bg-gradient-to-b from-[#9945FF] to-[#19FB9B] group-hover:shadow-[0_0_20px_rgba(153,69,255,0.4)]" 
+                    : "bg-gradient-to-b from-[#5243aa]/40 to-[#14f195]/40 group-hover:from-[#5243aa]/70 group-hover:to-[#14f195]/70 group-hover:shadow-[0_0_15px_rgba(20,241,149,0.25)]"
                 }`}
                 style={{ 
                   height: item.height,

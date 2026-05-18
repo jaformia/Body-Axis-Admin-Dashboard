@@ -86,17 +86,6 @@ export default function SettingsPage() {
                 <div className="w-[16px] h-[16px] bg-[#2dd4bf] rounded-full transform translate-x-4 shadow-sm transition-transform"></div>
               </button>
             </div>
-
-            {/* Push Alerts */}
-            <div className="flex items-center justify-between">
-              <div>
-                <div className="text-[13px] font-medium text-slate-200">Push Alerts</div>
-                <div className="text-[11px] text-slate-500 mt-1">Real-time mobile notifications</div>
-              </div>
-              <button className="w-10 h-6 bg-[#1e293b] rounded-full flex items-center p-1 cursor-pointer transition-colors">
-                <div className="w-[16px] h-[16px] bg-slate-400 rounded-full transform translate-x-0 shadow-sm transition-transform"></div>
-              </button>
-            </div>
           </div>
         </div>
 
