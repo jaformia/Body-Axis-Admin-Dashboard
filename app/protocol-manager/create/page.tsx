@@ -166,7 +166,7 @@ export default function CreateProtocolPage() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start mt-6">
         
         {/* Left Column: Protocol Metadata */}
-        <div className="lg:col-span-1 space-y-6 sticky top-32 z-10">
+        <div className="lg:col-span-1 space-y-6 sticky top-20 z-10">
           <div className="glass-card bg-[#1e2330] rounded-2xl p-6 shadow-lg border border-slate-800/40">
             <div className="flex items-center gap-2 mb-6 pb-6 border-b border-rose-500/20">
               <Layers size={20} className="text-cyan-400" />
