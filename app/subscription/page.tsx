@@ -1,10 +1,10 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { 
-  Users, Banknote, CalendarDays, RefreshCw, 
-  Download, ArrowUpRight, Grid, BadgeCheck, 
-  CheckCircle2, AlertCircle, ChevronDown, 
+import {
+  Users, Banknote, CalendarDays, RefreshCw,
+  Download, ArrowUpRight, Grid, BadgeCheck,
+  CheckCircle2, AlertCircle, ChevronDown,
   ChevronLeft, ChevronRight, CreditCard
 } from "lucide-react";
 
@@ -37,7 +37,7 @@ export default function SubscriptionPage() {
           <h2 className="text-[28px] font-extrabold text-white tracking-tight font-display leading-tight">Subscription Management</h2>
           <p className="text-slate-400 text-sm mt-1">Manage memberships, billing activity, and subscription performance.</p>
         </div>
-        
+
         <button className="flex items-center gap-2 bg-transparent border border-slate-800/80 hover:bg-slate-800/50 text-slate-300 px-5 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer">
           <Download size={14} />
           <span>Export Report</span>
@@ -107,17 +107,17 @@ export default function SubscriptionPage() {
 
       {/* Main Content Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-6">
-        
+
         {/* Left Column */}
         <div className="space-y-6">
           <h3 className="text-lg font-bold text-white tracking-wide">Active Plans</h3>
-          
+
           {/* Monthly Plan Card */}
           <div className="rounded-2xl p-6 border border-[#2563eb]/30 bg-gradient-to-br from-[#0b3370] to-[#0a1835] relative overflow-hidden shadow-[0_0_30px_rgba(37,99,235,0.15)]">
             <div className="absolute top-0 right-0 p-6 opacity-20 pointer-events-none">
               <Grid size={80} className="text-[#60a5fa]" />
             </div>
-            
+
             <div className="relative z-10">
               <span className="inline-block px-3 py-1 bg-white/10 text-slate-200 text-[10px] font-bold rounded-full mb-4">Popular</span>
               <h4 className="text-white font-extrabold text-[22px] mb-3 tracking-tight">Monthly Membership</h4>
@@ -125,7 +125,7 @@ export default function SubscriptionPage() {
                 <span className="text-[40px] font-extrabold text-white leading-none tracking-tighter">$29</span>
                 <span className="text-xs font-bold text-slate-300">/mo</span>
               </div>
-              
+
               <div className="grid grid-cols-2 gap-3">
                 <div className="bg-[#1e3a8a]/40 rounded-xl p-3 border border-white/5">
                   <span className="text-[10px] text-blue-200/70 font-bold block mb-0.5">Subscribers</span>
@@ -144,7 +144,7 @@ export default function SubscriptionPage() {
             <div className="absolute top-6 right-6 pointer-events-none">
               <BadgeCheck size={28} className="text-[#60a5fa] opacity-50" />
             </div>
-            
+
             <div className="relative z-10">
               <span className="inline-block px-3 py-1 bg-blue-500/10 text-blue-200 border border-blue-500/20 text-[10px] font-bold rounded-full mb-4">Best Value</span>
               <h4 className="text-white font-extrabold text-[22px] mb-3 tracking-tight">Yearly Membership</h4>
@@ -152,7 +152,7 @@ export default function SubscriptionPage() {
                 <span className="text-[40px] font-extrabold text-white leading-none tracking-tighter">$249</span>
                 <span className="text-xs font-bold text-slate-300">/yr</span>
               </div>
-              
+
               <div className="grid grid-cols-2 gap-3">
                 <div className="bg-[#1e3a8a]/40 rounded-xl p-3 border border-white/5">
                   <span className="text-[10px] text-blue-200/70 font-bold block mb-0.5">Subscribers</span>
@@ -202,7 +202,7 @@ export default function SubscriptionPage() {
                 </div>
               </div>
             </div>
-            
+
             {/* Mock Chart Area */}
             <div className="h-[200px] flex items-end justify-between gap-1.5 px-2 mt-4 relative">
               {/* Bars */}
@@ -211,13 +211,12 @@ export default function SubscriptionPage() {
               ].map((height, i) => {
                 const isLast = i === 13;
                 return (
-                  <div 
-                    key={i} 
-                    className={`w-full rounded-t-md transition-all ease-out ${
-                      isLast 
-                        ? 'bg-gradient-to-t from-[#22d3ee] to-[#c084fc] shadow-[0_0_20px_rgba(192,132,252,0.4)]' 
+                  <div
+                    key={i}
+                    className={`w-full rounded-t-md transition-all ease-out ${isLast
+                        ? 'bg-gradient-to-t from-[#22d3ee] to-[#c084fc] shadow-[0_0_20px_rgba(192,132,252,0.4)]'
                         : 'bg-gradient-to-t from-[#1f576e] to-[#513c94] opacity-80 hover:opacity-100'
-                    }`}
+                      }`}
                     style={{
                       height: mounted ? `${height}%` : '0%',
                       transitionDuration: '1000ms',
@@ -237,7 +236,7 @@ export default function SubscriptionPage() {
               <button className="px-5 py-2 rounded-full text-slate-400 hover:text-slate-200 text-[11px] font-bold transition-colors cursor-pointer">Expiring</button>
               <button className="px-5 py-2 rounded-full text-slate-400 hover:text-slate-200 text-[11px] font-bold transition-colors cursor-pointer">Cancelled</button>
             </div>
-            
+
             <div className="flex items-center gap-3">
               <div className="relative">
                 <select className="appearance-none bg-[#111627] border border-slate-800/80 text-[11px] font-bold text-slate-300 rounded-full pl-5 pr-10 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500/50 cursor-pointer">
@@ -295,11 +294,10 @@ export default function SubscriptionPage() {
                       </div>
                     </td>
                     <td className="py-4 px-6">
-                      <span className={`inline-flex items-center justify-center px-3 py-1 rounded-full text-[10px] font-bold border ${
-                        sub.status === 'Active' 
-                          ? 'bg-[#064e3b]/40 text-[#10b981] border-[#10b981]/20' 
+                      <span className={`inline-flex items-center justify-center px-3 py-1 rounded-full text-[10px] font-bold border ${sub.status === 'Active'
+                          ? 'bg-[#064e3b]/40 text-[#10b981] border-[#10b981]/20'
                           : 'bg-[#7f1d1d]/40 text-[#f87171] border-[#f87171]/20'
-                      }`}>
+                        }`}>
                         {sub.status}
                       </span>
                     </td>
