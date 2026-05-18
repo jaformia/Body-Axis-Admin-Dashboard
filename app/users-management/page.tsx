@@ -2,16 +2,16 @@ import { Search, Filter, CalendarDays, ChevronDown, ChevronLeft, ChevronRight } 
 
 export default function UsersManagementPage() {
   const users = [
-    { name: "Olivia Katherine Montgo...", email: "olivia.katherine.montgomery...", joinDate: "12 Jan 2026", protocol: "The Lower Back Ache Full...", total: "4", status: "ACTIVE", sessions: "42" },
-    { name: "Olivia Katherine Mont...", email: "olivia.katherine.montgomery...", joinDate: "12 Jan 2026", protocol: "The Lower Back Ache Full...", total: "4", status: "EXPIRING SOON", sessions: "42" },
-    { name: "Olivia Katherine Mont...", email: "olivia.katherine.montgomery...", joinDate: "12 Jan 2026", protocol: "The Lower Back Ache Full...", total: "4", status: "EXPIRED", sessions: "42" },
-    { name: "Ethan Alexander Broo...", email: "ethan.alexander.brookshire...", joinDate: "18 Jan 2026", protocol: "The QL Deep Reset", total: "2", status: "EXPIRING SOON", sessions: "36" },
-    { name: "Ethan Alexander Broo...", email: "ethan.alexander.brookshire...", joinDate: "18 Jan 2026", protocol: "The QL Deep Reset", total: "2", status: "EXPIRING SOON", sessions: "36" },
-    { name: "Ethan Alexander Broo...", email: "ethan.alexander.brookshire...", joinDate: "18 Jan 2026", protocol: "The QL Deep Reset", total: "2", status: "EXPIRED", sessions: "36" },
-    { name: "Sophia Elizabeth Harri...", email: "sophia.elizabeth.harrington...", joinDate: "25 Jan 2026", protocol: "The Hip Flexor Strength F...", total: "4", status: "ACTIVE", sessions: "42" },
-    { name: "Sophia Elizabeth Harri...", email: "sophia.elizabeth.harrington...", joinDate: "25 Jan 2026", protocol: "The Hip Flexor Strength F...", total: "4", status: "ACTIVE", sessions: "42" },
-    { name: "Liam Jonathan Wellin...", email: "liam.jonathan.wellington@ex...", joinDate: "25 Jan 2026", protocol: "The Hip Flexor Strength F...", total: "4", status: "EXPIRED", sessions: "42" },
-    { name: "Liam Jonathan Wellin...", email: "liam.jonathan.wellington@ex...", joinDate: "25 Jan 2026", protocol: "The Hip Flexor Strength F...", total: "4", status: "ACTIVE", sessions: "42" },
+    { name: "Olivia Katherine Montgo...", dob: "24 Aug 1995", email: "olivia.katherine.montgomery...", joinDate: "12 Jan 2026", protocol: "The Lower Back Ache Full...", total: "4", status: "ACTIVE", sessions: "42" },
+    { name: "Olivia Katherine Mont...", dob: "24 Aug 1995", email: "olivia.katherine.montgomery...", joinDate: "12 Jan 2026", protocol: "The Lower Back Ache Full...", total: "4", status: "EXPIRING SOON", sessions: "42" },
+    { name: "Olivia Katherine Mont...", dob: "24 Aug 1995", email: "olivia.katherine.montgomery...", joinDate: "12 Jan 2026", protocol: "The Lower Back Ache Full...", total: "4", status: "EXPIRED", sessions: "42" },
+    { name: "Ethan Alexander Broo...", dob: "12 Nov 1988", email: "ethan.alexander.brookshire...", joinDate: "18 Jan 2026", protocol: "The QL Deep Reset", total: "2", status: "EXPIRING SOON", sessions: "36" },
+    { name: "Ethan Alexander Broo...", dob: "12 Nov 1988", email: "ethan.alexander.brookshire...", joinDate: "18 Jan 2026", protocol: "The QL Deep Reset", total: "2", status: "EXPIRING SOON", sessions: "36" },
+    { name: "Ethan Alexander Broo...", dob: "12 Nov 1988", email: "ethan.alexander.brookshire...", joinDate: "18 Jan 2026", protocol: "The QL Deep Reset", total: "2", status: "EXPIRED", sessions: "36" },
+    { name: "Sophia Elizabeth Harri...", dob: "03 Feb 1992", email: "sophia.elizabeth.harrington...", joinDate: "25 Jan 2026", protocol: "The Hip Flexor Strength F...", total: "4", status: "ACTIVE", sessions: "42" },
+    { name: "Sophia Elizabeth Harri...", dob: "03 Feb 1992", email: "sophia.elizabeth.harrington...", joinDate: "25 Jan 2026", protocol: "The Hip Flexor Strength F...", total: "4", status: "ACTIVE", sessions: "42" },
+    { name: "Liam Jonathan Wellin...", dob: "19 Jul 1985", email: "liam.jonathan.wellington@ex...", joinDate: "25 Jan 2026", protocol: "The Hip Flexor Strength F...", total: "4", status: "EXPIRED", sessions: "42" },
+    { name: "Liam Jonathan Wellin...", dob: "19 Jul 1985", email: "liam.jonathan.wellington@ex...", joinDate: "25 Jan 2026", protocol: "The Hip Flexor Strength F...", total: "4", status: "ACTIVE", sessions: "42" },
   ];
 
   return (
@@ -103,6 +103,7 @@ export default function UsersManagementPage() {
           <thead>
             <tr className="border-b border-slate-800/60">
               <th className="py-5 px-6 text-[10px] font-bold text-slate-400 uppercase tracking-widest">NAME</th>
+              <th className="py-5 px-6 text-[10px] font-bold text-slate-400 uppercase tracking-widest">DATE OF BIRTH</th>
               <th className="py-5 px-6 text-[10px] font-bold text-slate-400 uppercase tracking-widest">EMAIL</th>
               <th className="py-5 px-6 text-[10px] font-bold text-slate-400 uppercase tracking-widest w-[12%]">JOIN DATE</th>
               <th className="py-5 px-6 text-[10px] font-bold text-slate-400 uppercase tracking-widest">CURRENT PROTOCOL</th>
@@ -115,6 +116,7 @@ export default function UsersManagementPage() {
             {users.map((user, idx) => (
               <tr key={idx} className="border-b border-slate-800/40 hover:bg-[#1b2237]/50 transition-colors group">
                 <td className="py-4 px-6 text-xs text-slate-200 font-bold">{user.name}</td>
+                <td className="py-4 px-6 text-[11px] text-slate-400 font-medium">{user.dob}</td>
                 <td className="py-4 px-6 text-[11px] text-slate-400 font-medium">{user.email}</td>
                 <td className="py-4 px-6 text-[11px] text-slate-400 font-medium">{user.joinDate}</td>
                 <td className="py-4 px-6 text-[11px] text-slate-400 font-medium">{user.protocol}</td>

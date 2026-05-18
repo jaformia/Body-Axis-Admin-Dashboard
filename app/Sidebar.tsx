@@ -10,7 +10,6 @@ import {
   Video,
   Users,
   CreditCard,
-  BarChart3,
   Settings
 } from "lucide-react";
 
@@ -24,7 +23,6 @@ export default function Sidebar() {
     { name: "Video Manager", href: "/video-manager", icon: Video },
     { name: "Users Management", href: "/users-management", icon: Users },
     { name: "Subscription", href: "/subscription", icon: CreditCard },
-    { name: "Analytics", href: "/analytics", icon: BarChart3 },
     { name: "Settings", href: "/settings", icon: Settings },
   ];
 
