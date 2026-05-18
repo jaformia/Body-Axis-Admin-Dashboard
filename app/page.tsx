@@ -23,7 +23,7 @@ export default function Home() {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#02050f] overflow-hidden flex items-center justify-center select-none font-sans">
+    <div className="relative min-h-screen w-full flex-1 bg-[#02050f] overflow-hidden flex items-center justify-center select-none font-sans">
       
       {/* Immersive Plexus Background Image Layer */}
       <div className="absolute inset-0 pointer-events-none z-0">
