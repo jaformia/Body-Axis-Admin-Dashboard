@@ -1,4 +1,5 @@
 import { Search, Plus, Filter, CalendarDays, ChevronDown, Trash2, ChevronLeft, ChevronRight } from "lucide-react";
+import Link from "next/link";
 
 export default function VideoManagerPage() {
   const videos = [
@@ -29,10 +30,10 @@ export default function VideoManagerPage() {
               className="bg-[#0f172a]/80 border border-slate-800/80 text-sm text-slate-200 rounded-full pl-11 pr-4 py-2.5 w-72 focus:outline-none focus:border-[#2563eb]/50 focus:ring-1 focus:ring-[#2563eb]/50 transition-all placeholder:text-slate-600"
             />
           </div>
-          <button className="flex items-center gap-2 bg-[#2563eb] hover:bg-blue-500 text-white px-5 py-2.5 rounded-full font-semibold text-sm shadow-[0_0_20px_rgba(37,99,235,0.25)] transition-all duration-200 cursor-pointer">
+          <Link href="/video-manager/upload" className="flex items-center gap-2 bg-[#2563eb] hover:bg-blue-500 text-white px-5 py-2.5 rounded-full font-semibold text-sm shadow-[0_0_20px_rgba(37,99,235,0.25)] transition-all duration-200 cursor-pointer">
             <span>Upload New Video</span>
             <Plus size={16} />
-          </button>
+          </Link>
         </div>
       </div>
 
