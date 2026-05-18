@@ -163,10 +163,10 @@ export default function CreateProtocolPage() {
       </div>
 
       {/* Main Grid Content */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start mt-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch mt-6 lg:h-[calc(100vh-230px)] lg:overflow-hidden">
         
         {/* Left Column: Protocol Metadata */}
-        <div className="lg:col-span-1 space-y-6 sticky top-20 z-10">
+        <div className="lg:col-span-1 space-y-6 lg:h-full lg:overflow-y-auto lg:pr-2">
           <div className="glass-card bg-[#1e2330] rounded-2xl p-6 shadow-lg border border-slate-800/40">
             <div className="flex items-center gap-2 mb-6 pb-6 border-b border-rose-500/20">
               <Layers size={20} className="text-cyan-400" />
@@ -298,8 +298,8 @@ export default function CreateProtocolPage() {
         </div>
 
         {/* Right Column: Phase-Based Session Builder */}
-        <div className="lg:col-span-2 space-y-6">
-          <div className="glass-card bg-[#1e2330] rounded-2xl p-6 shadow-lg border border-slate-800/40 min-h-[800px]">
+        <div className="lg:col-span-2 space-y-6 lg:h-full lg:overflow-y-auto lg:pr-2">
+          <div className="glass-card bg-[#1e2330] rounded-2xl p-6 shadow-lg border border-slate-800/40">
             <div className="flex items-center gap-2 mb-8 pb-4 border-b border-[#0d9488]/50">
               <Layers size={20} className="text-cyan-400" />
               <h3 className="text-xs font-bold text-white uppercase tracking-widest">PHASE-BASED SESSION BUILDER</h3>
