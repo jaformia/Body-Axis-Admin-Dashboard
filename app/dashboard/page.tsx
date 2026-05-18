@@ -5,7 +5,8 @@ import {
   Flame, 
   Dumbbell, 
   Calendar,
-  TrendingUp
+  TrendingUp,
+  Users
 } from "lucide-react";
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
@@ -42,76 +43,61 @@ interface DashboardData {
   }>;
 }
 
-// Custom outline vectors for card backgrounds
-const TotalUsersIcon = ({ className = "w-6 h-6 text-cyan-400" }) => (
-  <svg className={className} viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" strokeWidth="6.5" strokeLinecap="round">
-    <circle cx="50" cy="32" r="10" />
-    <path d="M32 20c-5 5-5 19 0 24" />
-    <path d="M68 20c5 5 5 19 0 24" />
-    <ellipse cx="50" cy="66" rx="14" ry="9" />
-    <path d="M26 54c-7 5-7 19 0 24" />
-    <path d="M74 54c7 5 7 19 0 24" />
-  </svg>
-);
-
+// Background SVGs to match the design aesthetics (simplified or removed if they clash, 
+// but using the provided or similar styles for visual richness)
 const TotalUsersOutline = () => (
-  <svg className="absolute -bottom-6 -right-6 w-36 h-36 text-slate-400/18 pointer-events-none z-0" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" strokeWidth="6.2" strokeLinecap="round">
+  <svg className="absolute -bottom-6 -right-6 w-[81px] h-[88px] text-[#00d4ff]/20 opacity-30 pointer-events-none z-0 mix-blend-screen" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="4">
     <circle cx="50" cy="32" r="10" />
     <path d="M32 20c-5 5-5 19 0 24" />
     <path d="M68 20c5 5 5 19 0 24" />
     <ellipse cx="50" cy="66" rx="14" ry="9" />
-    <path d="M26 54c-7 5-7 19 0 24" />
-    <path d="M74 54c7 5 7 19 0 24" />
   </svg>
 );
 
 const ActiveUserOutline = () => (
-  <svg className="absolute -bottom-3 -right-3 w-28 h-28 text-slate-400/18 pointer-events-none z-0" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="2.8">
+  <svg className="absolute -bottom-3 -right-3 w-[81px] h-[88px] text-[#00d4ff]/20 opacity-30 pointer-events-none z-0 mix-blend-screen" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="3">
     <circle cx="50" cy="38" r="18" />
     <path d="M15 78c0-12 15-22 35-22s35 10 35 22" />
   </svg>
 );
 
 const FlameOutline = () => (
-  <svg className="absolute -bottom-2 -right-3 w-28 h-28 text-slate-400/18 pointer-events-none z-0" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="2.8">
+  <svg className="absolute -bottom-2 -right-3 w-[81px] h-[88px] text-[#00d4ff]/20 opacity-30 pointer-events-none z-0 mix-blend-screen" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="3">
     <path d="M50 85c18 0 28-12 28-28 0-22-16-38-28-43-12 5-28 21-28 43 0 16 10 28 28 28z" />
-    <path d="M50 78c10 0 15-8 15-16 0-13-9-23-15-26-6 3-15 13-15 26 0 8 5 16 15 16z" />
   </svg>
 );
 
 const DumbbellOutline = () => (
-  <svg className="absolute -bottom-2 -right-3 w-28 h-28 text-slate-400/18 pointer-events-none z-0" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="2.8">
+  <svg className="absolute -bottom-2 -right-3 w-[81px] h-[88px] text-[#00d4ff]/20 opacity-30 pointer-events-none z-0 mix-blend-screen" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="3">
     <rect x="44" y="10" width="12" height="80" rx="3" />
     <rect x="22" y="25" width="22" height="50" rx="5" />
     <rect x="56" y="25" width="22" height="50" rx="5" />
-    <circle cx="10" cy="50" r="6" />
-    <circle cx="90" cy="50" r="6" />
   </svg>
 );
 
 // Fallback high-fidelity local dataset
 const FALLBACK_DATA: DashboardData = {
   stats: [
-    { id: "total-users", label: "TOTAL USERS", value: "14,285", change: "+ 12%", status: "up", color: "blue" },
-    { id: "active-users", label: "ACTIVE USERS", value: "8,912", change: "+ 12%", status: "up", color: "purple" },
-    { id: "total-protocols", label: "TOTAL PROTOCOLS", value: "412", change: "+ 12%", status: "up", color: "emerald" },
-    { id: "total-exercises", label: "TOTAL EXERCISES", value: "2,854", change: "+ 12%", status: "up", color: "blue" }
+    { id: "total-users", label: "TOTAL USERS", value: "14,285", change: "12%", status: "up", color: "cyan" },
+    { id: "active-users", label: "ACTIVE USERS", value: "8,912", change: "12%", status: "up", color: "purple" },
+    { id: "total-protocols", label: "TOTAL PROTOCOLS", value: "412", change: "12%", status: "up", color: "emerald" },
+    { id: "total-exercises", label: "TOTAL EXERCISES", value: "2,854", change: "12%", status: "up", color: "blue" }
   ],
   chartData: [
-    { date: "01 OCT", value: 100, height: "45%", isHighlighted: false },
-    { date: "02 OCT", value: 120, height: "55%", isHighlighted: false },
-    { date: "03 OCT", value: 80, height: "35%", isHighlighted: false },
-    { date: "04 OCT", value: 110, height: "48%", isHighlighted: false },
-    { date: "05 OCT", value: 95, height: "42%", isHighlighted: false },
-    { date: "06 OCT", value: 130, height: "58%", isHighlighted: false },
-    { date: "07 OCT", value: 122, height: "52%", isHighlighted: false },
-    { date: "08 OCT", value: 150, height: "68%", isHighlighted: false },
+    { date: "01 OCT", value: 100, height: "42%", isHighlighted: false },
+    { date: "02 OCT", value: 120, height: "68%", isHighlighted: false },
+    { date: "03 OCT", value: 80, height: "38%", isHighlighted: false },
+    { date: "04 OCT", value: 110, height: "55%", isHighlighted: false },
+    { date: "05 OCT", value: 95, height: "48%", isHighlighted: false },
+    { date: "06 OCT", value: 130, height: "72%", isHighlighted: false },
+    { date: "07 OCT", value: 122, height: "58%", isHighlighted: false },
+    { date: "08 OCT", value: 150, height: "82%", isHighlighted: false },
     { date: "09 OCT", value: 105, height: "46%", isHighlighted: false },
-    { date: "10 OCT", value: 140, height: "62%", isHighlighted: false },
+    { date: "10 OCT", value: 140, height: "65%", isHighlighted: false },
     { date: "11 OCT", value: 90, height: "38%", isHighlighted: false },
-    { date: "12 OCT", value: 125, height: "54%", isHighlighted: false },
+    { date: "12 OCT", value: 125, height: "60%", isHighlighted: false },
     { date: "13 OCT", value: 100, height: "44%", isHighlighted: false },
-    { date: "14 OCT", value: 190, height: "88%", isHighlighted: true }
+    { date: "14 OCT", value: 190, height: "100%", isHighlighted: true }
   ],
   tableData: [
     { date: "14 Oct 2024", totalSessions: "152", activeSessions: "128", completion: "94%" },
@@ -160,21 +146,20 @@ export default function DashboardHome() {
     );
   }
 
-  // Dynamic filter chart heights updates
   const getDynamicChartData = () => {
     if (!data) return [];
     if (filter === "Daily") {
       return data.chartData.map((item, idx) => ({
         ...item,
-        height: idx % 2 === 0 ? "35%" : "72%",
-        isHighlighted: idx === 5
+        height: idx % 2 === 0 ? "40%" : "70%",
+        isHighlighted: idx === 13
       }));
     }
     if (filter === "Monthly") {
       return data.chartData.map((item, idx) => ({
         ...item,
-        height: idx % 3 === 0 ? "85%" : idx % 2 === 0 ? "50%" : "28%",
-        isHighlighted: idx === 10
+        height: idx % 3 === 0 ? "85%" : idx % 2 === 0 ? "50%" : "30%",
+        isHighlighted: idx === 13
       }));
     }
     return data.chartData;
@@ -183,23 +168,10 @@ export default function DashboardHome() {
   const activeChartData = getDynamicChartData();
 
   const getIcon = (id: string, color: string) => {
-    if (id === "total-users") return <TotalUsersIcon className="w-[18px] h-[18px] text-cyan-400" />;
-    
-    const iconClass = `transition-colors duration-300 ${
-      color === "blue" ? "text-cyan-400" :
-      color === "purple" ? "text-indigo-400" :
-      color === "emerald" ? "text-emerald-400" : "text-cyan-400"
-    }`;
-    if (id === "active-users") return <User className={iconClass} size={18} />;
-    if (id === "total-protocols") return <Flame className={iconClass} size={18} />;
-    return <Dumbbell className={iconClass} size={18} />;
-  };
-
-  const getGlowBg = (color: string) => {
-    if (color === "blue") return "bg-cyan-600/10 border-cyan-500/20";
-    if (color === "purple") return "bg-indigo-600/10 border-indigo-500/20";
-    if (color === "emerald") return "bg-emerald-600/10 border-emerald-500/20";
-    return "bg-cyan-600/10 border-cyan-500/20";
+    if (id === "total-users") return <Users className="text-[#22D3EE]" size={20} />;
+    if (id === "active-users") return <User className="text-[#8B5CF6]" size={20} />;
+    if (id === "total-protocols") return <Flame className="text-[#2DD4BF]" size={20} />;
+    return <Dumbbell className="text-[#3B82F6]" size={20} />;
   };
 
   const getOutlineVector = (id: string) => {
@@ -210,171 +182,158 @@ export default function DashboardHome() {
   };
 
   return (
-    <div className="space-y-8 select-none">
+    <div className="space-y-8 select-none pb-12 font-sans">
       {/* Title Header Banner */}
-      <div>
-        <h2 className="text-2xl font-bold text-white tracking-tight font-display">Dashboard Home</h2>
-        <p className="text-slate-400 text-xs mt-1">Visualizing movement integrity and platform growth monitoring across the Body Axis ecosystem.</p>
+      <div className="flex flex-col items-start gap-1">
+        <h2 className="text-[26px] font-bold text-white tracking-tight leading-none">Dashboard Home</h2>
+        <p className="text-[#8899BB] text-[13px] font-normal leading-relaxed mt-1">Visualizing movement integrity and platform growth monitoring across the Body Axis ecosystem.</p>
       </div>
 
       {/* Stats Grid Dashboard */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {data.stats.map((stat) => (
-          <div key={stat.id} className="glass-card rounded-2xl p-5 relative overflow-hidden flex flex-col justify-between min-h-[160px] border border-slate-800/40 shadow-sm z-10">
-            {/* Background outline SVG shape */}
+          <div key={stat.id} className="bg-[#0F1729] border border-[#1A2640] rounded-xl p-5 relative overflow-hidden h-[144px] flex flex-col justify-between shadow-sm group hover:border-[#2a3a5d] transition-colors">
             {getOutlineVector(stat.id)}
             
-            {/* Top Segment: Label (Left) and Trend Badge (Right) */}
-            <div className="flex items-center justify-between z-10 w-full">
-              <span className="text-[9px] font-bold uppercase tracking-wider text-slate-500">{stat.label}</span>
-              <div className="flex items-center gap-1 text-[10px] font-extrabold text-[#059669] bg-[#e6fbf3] px-2.5 py-0.5 rounded-full select-none shadow-sm">
-                <TrendingUp size={10} className="stroke-[2.5]" />
-                <span>{stat.change}</span>
-              </div>
-            </div>
-
-            {/* Middle Segment: Glowing Icon Box (Left Centered) */}
-            <div className="z-10 mt-3 flex justify-start">
-              <div className={`p-2 rounded-xl border ${getGlowBg(stat.color)}`}>
+            <div className="flex items-start justify-between w-full relative z-10">
+              <div className="bg-[#070B10] w-10 h-10 rounded-xl flex items-center justify-center border border-white/5">
                 {getIcon(stat.id, stat.color)}
               </div>
+              <div className="flex items-center gap-1.5 bg-[#E9FFF1] px-2.5 py-1 rounded-full border border-[#10B981]">
+                <TrendingUp size={12} className="text-[#10B981] stroke-[2.5]" />
+                <span className="text-[#10B981] text-[14px] font-bold leading-none">{stat.change}</span>
+              </div>
             </div>
 
-            {/* Bottom Segment: Value (Left) */}
-            <div className="mt-3 z-10 flex items-end">
-              <span className="text-xl font-bold text-white font-display tracking-tight leading-none">{stat.value}</span>
+            <div className="relative z-10 mt-auto pt-4 flex flex-col">
+              <span className="text-[#5A7090] text-[14px] font-medium uppercase tracking-wide mb-1 leading-none">{stat.label}</span>
+              <span className="text-[24px] font-bold text-white leading-none tracking-tight">{stat.value}</span>
             </div>
           </div>
         ))}
       </div>
 
-      {/* Main Charts & Table Card */}
-      <div className="glass-card rounded-2xl p-6 border border-slate-800/40">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+      {/* Main Engagement Velocity Chart Box */}
+      <div className="bg-[#0B1220] rounded-[20px] p-6 lg:p-8 flex flex-col gap-6 shadow-lg border border-[#1A2640]/50 relative overflow-hidden">
+        
+        {/* Header and Controls */}
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 z-10">
           <div>
-            <h3 className="text-base font-bold text-white font-display tracking-wide">Engagement Velocity</h3>
-            <p className="text-slate-400 text-[11px] mt-0.5">Global mobility session distribution on a day basis</p>
+            <h3 className="text-[22px] font-bold text-white tracking-tight leading-snug">Engagement Velocity</h3>
+            <p className="text-[#5A7090] text-[14px] mt-1">Global mobility session distribution on a day basis</p>
           </div>
           
-          <div className="flex flex-wrap items-center gap-3.5">
-            {/* Clickable Date Range Picker */}
-            <div className="flex items-center gap-1 border border-slate-800/80 rounded-xl px-3 py-1.5 bg-[#080d22]/35 text-[11px] text-slate-400 font-semibold shadow-inner">
+          <div className="flex flex-wrap items-center gap-4 bg-[#0D1525]/80 p-1.5 rounded-xl border border-white/5 shadow-inner">
+            {/* Date Range Picker container */}
+            <div className="flex items-center gap-2 px-3 py-1.5">
               <button 
                 onClick={() => startDateRef.current?.showPicker()}
-                className="hover:text-white transition-colors duration-150 cursor-pointer p-0 bg-transparent border-none flex items-center justify-center focus:outline-none"
+                className="text-[#2DD4BF] hover:text-[#14b8a6] transition-colors cursor-pointer"
               >
-                <Calendar size={13} className="text-slate-500 hover:text-slate-300" />
+                <Calendar size={18} />
               </button>
               <input 
                 ref={startDateRef}
                 type="date"
                 value={startDate}
                 onChange={(e) => setStartDate(e.target.value)}
-                className="bg-transparent border-none px-1 py-0.5 rounded text-slate-300 focus:outline-none cursor-pointer color-scheme-dark hover:text-white transition-colors duration-150 text-[10px] style-date-input w-[95px]"
+                className="bg-transparent border-none text-white focus:outline-none cursor-pointer color-scheme-dark hover:text-white transition-colors text-[13px] font-medium w-24"
                 style={{ colorScheme: "dark" }}
               />
-              <span className="text-slate-600 font-bold uppercase text-[9px] px-1 select-none">to</span>
+              <span className="text-[#5A7090] font-medium text-[12px] px-1 select-none">to</span>
               <input 
                 ref={endDateRef}
                 type="date"
                 value={endDate}
                 onChange={(e) => setEndDate(e.target.value)}
-                className="bg-transparent border-none px-1 py-0.5 rounded text-slate-300 focus:outline-none cursor-pointer color-scheme-dark hover:text-white transition-colors duration-150 text-[10px] style-date-input w-[95px]"
+                className="bg-transparent border-none text-white focus:outline-none cursor-pointer color-scheme-dark hover:text-white transition-colors text-[13px] font-medium w-24"
                 style={{ colorScheme: "dark" }}
               />
               <button 
                 onClick={() => endDateRef.current?.showPicker()}
-                className="hover:text-white transition-colors duration-150 cursor-pointer p-0 bg-transparent border-none flex items-center justify-center focus:outline-none"
+                className="text-[#2DD4BF] hover:text-[#14b8a6] transition-colors cursor-pointer"
               >
-                <Calendar size={13} className="text-slate-500 hover:text-slate-300" />
+                <Calendar size={18} />
               </button>
             </div>
 
+            <div className="w-[1px] h-6 bg-[#1A2640]" />
+
             {/* Filter Toggle pills */}
-            <div className="flex items-center gap-2 text-[10px] font-bold text-slate-500 select-none">
-              <button 
-                onClick={() => setFilter("Daily")}
-                className={`px-3 py-1 rounded-lg transition-all duration-200 cursor-pointer ${
-                  filter === "Daily"
-                    ? "bg-[#1d4ed8] text-white shadow-[0_2px_10px_rgba(29,78,216,0.2)] font-semibold animate-scale-pill"
-                    : "hover:text-slate-300"
-                }`}
-              >
-                Daily
-              </button>
-              <button 
-                onClick={() => setFilter("Weekly")}
-                className={`px-3 py-1 rounded-lg transition-all duration-200 cursor-pointer ${
-                  filter === "Weekly"
-                    ? "bg-[#1d4ed8] text-white shadow-[0_2px_10px_rgba(29,78,216,0.2)] font-semibold animate-scale-pill"
-                    : "hover:text-slate-300"
-                }`}
-              >
-                Weekly
-              </button>
-              <button 
-                onClick={() => setFilter("Monthly")}
-                className={`px-3 py-1 rounded-lg transition-all duration-200 cursor-pointer ${
-                  filter === "Monthly"
-                    ? "bg-[#1d4ed8] text-white shadow-[0_2px_10px_rgba(29,78,216,0.2)] font-semibold animate-scale-pill"
-                    : "hover:text-slate-300"
-                }`}
-              >
-                Monthly
-              </button>
+            <div className="flex items-center gap-1">
+              {["Daily", "Weekly", "Monthly"].map((mode) => (
+                <button 
+                  key={mode}
+                  onClick={() => setFilter(mode as any)}
+                  className={`px-4 py-1.5 rounded-lg transition-all duration-200 cursor-pointer text-[12px] font-bold ${
+                    filter === mode
+                      ? "bg-[#2563EB] text-white shadow-[0_0_15px_rgba(37,99,235,0.4)]"
+                      : "text-[#5A7090] hover:text-slate-300"
+                  }`}
+                >
+                  {mode}
+                </button>
+              ))}
             </div>
           </div>
         </div>
 
-        {/* 14 Bar Chart Custom CSS Grid styled */}
-        <div className="h-60 flex items-end gap-3 px-2 pt-6 relative border-b border-slate-850 pb-4">
+        {/* 14 Bar Chart Container */}
+        <div className="h-[280px] flex items-end justify-between gap-3 px-2 pt-8 w-full z-10 border-b border-[#1A2640]/50 pb-3 mt-4">
           {activeChartData.map((item, index) => (
-            <div key={index} className="flex-1 flex flex-col items-center group relative h-full justify-end z-10">
+            <div key={index} className="flex-1 flex flex-col items-center group relative h-full justify-end w-full">
               {/* Bar */}
               <div 
-                className={`w-full rounded-t-md transition-all duration-500 animate-bar-grow ${
+                className={`w-full max-w-[65px] rounded-t-md transition-all duration-700 ease-in-out ${
                   item.isHighlighted 
-                    ? "bg-gradient-to-t from-[#06b6d4] to-[#a855f7] glow-blue shadow-[0_0_20px_rgba(6,182,212,0.4)]" 
-                    : "bg-gradient-to-t from-[#06b6d4]/40 to-[#8b5cf6]/50 group-hover:to-[#8b5cf6]/80"
+                    ? "bg-gradient-to-b from-[#9945FF] to-[#19FB9B]" 
+                    : "bg-gradient-to-b from-[#5243aa]/40 to-[#14f195]/40 group-hover:from-[#5243aa]/70 group-hover:to-[#14f195]/70"
                 }`}
                 style={{ 
                   height: item.height,
-                  animationDelay: `${index * 25}ms`
+                  animationDelay: `${index * 30}ms`
                 }}
               />
               
               {/* X-Axis Date Tag */}
-              <span className="text-[9px] text-slate-500 font-bold mt-2.5 tracking-tight group-hover:text-slate-300 transition-colors duration-200">{item.date}</span>
+              <span className="absolute -bottom-7 text-[10px] text-[#3D5070] font-bold uppercase tracking-[0.5px] whitespace-nowrap group-hover:text-[#5A7090] transition-colors">
+                {item.date}
+              </span>
             </div>
           ))}
         </div>
 
-        {/* Nested Engagement Detail Table */}
-        <div className="mt-8">
-          <h4 className="text-[10px] font-extrabold tracking-wider text-slate-400 uppercase mb-4">ENGAGEMENT DATA DETAIL</h4>
+        {/* Nested Engagement Detail Table Overlay */}
+        <div className="bg-[#0D1525]/40 border border-[#1A2640] rounded-2xl overflow-hidden mt-10 z-10">
+          <div className="bg-[#0F1722]/50 px-6 py-4 border-b border-[#1A2640]">
+            <h4 className="text-[14px] font-bold tracking-[0.7px] text-white uppercase">Engagement Data Detail</h4>
+          </div>
           
-          <div className="overflow-x-auto">
-            <table className="w-full text-left border-collapse text-xs">
+          <div className="overflow-x-auto bg-[#1C2533]">
+            <table className="w-full text-left border-collapse min-w-[600px]">
               <thead>
-                <tr className="border-b border-slate-850 text-slate-500 font-bold uppercase tracking-wider text-[9px]">
-                  <th className="pb-3 font-semibold">DATE</th>
-                  <th className="pb-3 font-semibold">TOTAL SESSIONS</th>
-                  <th className="pb-3 font-semibold">ACTIVE SESSIONS</th>
-                  <th className="pb-3 font-semibold text-right">AVG. COMPLETION %</th>
+                <tr className="border-b border-[#1A2640]">
+                  <th className="py-4 px-6 text-[#5A7090] font-bold uppercase tracking-[1.1px] text-[11px]">Date</th>
+                  <th className="py-4 px-6 text-[#5A7090] font-bold uppercase tracking-[1.1px] text-[11px]">Total Sessions</th>
+                  <th className="py-4 px-6 text-[#5A7090] font-bold uppercase tracking-[1.1px] text-[11px]">Active Sessions</th>
+                  <th className="py-4 px-6 text-[#5A7090] font-bold uppercase tracking-[1.1px] text-[11px]">Avg. Completion %</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-850/40">
+              <tbody className="divide-y divide-[#1A2640]">
                 {data.tableData.map((row, idx) => (
-                  <tr key={idx} className="text-slate-300 hover:bg-slate-900/10 transition-colors duration-150">
-                    <td className="py-3.5 text-slate-400 font-medium">{row.date}</td>
-                    <td className="py-3.5 font-bold text-white">{row.totalSessions}</td>
-                    <td className="py-3.5 text-slate-400 font-medium">{row.activeSessions}</td>
-                    <td className="py-3.5">
-                      <div className="flex items-center justify-end gap-3">
-                        <div className="w-24 bg-slate-950 h-1.5 rounded-full overflow-hidden border border-slate-850 flex-shrink-0">
-                          <div className="bg-[#10b981] h-full rounded-full" style={{ width: row.completion }} />
+                  <tr key={idx} className="hover:bg-white/5 transition-colors">
+                    <td className="py-5 px-6 text-[#8899BB] text-[14px]">{row.date}</td>
+                    <td className="py-5 px-6 font-bold text-white text-[15px]">{row.totalSessions}</td>
+                    <td className="py-5 px-6 text-[#8899BB] text-[14px]">{row.activeSessions}</td>
+                    <td className="py-5 px-6">
+                      <div className="flex items-center gap-4">
+                        <div className="w-[128px] h-[6px] bg-[#1A2640] rounded-full overflow-hidden flex-shrink-0">
+                          <div 
+                            className="bg-[#10B981] h-full rounded-full shadow-[0_0_10px_rgba(16,185,129,0.4)]" 
+                            style={{ width: row.completion }} 
+                          />
                         </div>
-                        <span className="font-extrabold text-[#10b981] text-[10px] w-8 text-right">{row.completion}</span>
+                        <span className="font-bold text-[#10B981] text-[14px] min-w-[32px]">{row.completion}</span>
                       </div>
                     </td>
                   </tr>
@@ -385,41 +344,46 @@ export default function DashboardHome() {
         </div>
       </div>
 
-      {/* Live Activity Feed bottom panel */}
-      <div className="glass-card rounded-2xl p-6 border border-slate-800/40">
-        <div className="flex items-center justify-between mb-6">
-          <div className="flex items-center gap-2">
-            <span className="w-2 h-2 bg-[#10b981] rounded-full shadow-[0_0_10px_rgba(16,185,129,0.7)] animate-pulse" />
-            <h3 className="text-sm font-bold text-white font-display tracking-wide">Live Activity</h3>
+      {/* Live Activity Feed */}
+      <div className="pt-2">
+        <div className="flex items-center justify-between mb-5 px-1">
+          <div className="flex items-center gap-3">
+            <span className="w-2 h-2 bg-[#10B981] rounded-full shadow-[0_0_8px_rgba(16,185,129,0.6)] animate-pulse" />
+            <h3 className="text-[20px] font-bold text-white tracking-tight">Live Activity</h3>
           </div>
-          <button className="text-[10px] font-extrabold text-slate-500 hover:text-slate-300 uppercase tracking-widest transition-colors duration-200">SEE ALL</button>
+          <button className="text-[11px] font-bold text-[#2563EB] hover:text-[#3b82f6] uppercase tracking-[1.1px] transition-colors cursor-pointer">
+            SEE ALL
+          </button>
         </div>
 
-        <div className="space-y-3.5 pr-1">
+        <div className="space-y-4">
           {data.activities.map((act) => (
-            <div key={act.id} className="p-4 bg-[#050815]/65 border border-slate-900/80 rounded-xl flex items-center justify-between gap-6 hover:border-slate-800/60 transition-all duration-200">
-              <div className="flex items-center gap-4 overflow-hidden">
-                {/* Outlined avatar photo */}
-                <div className="w-9 h-9 rounded-full border border-slate-800 bg-[#02050f]/60 overflow-hidden flex items-center justify-center flex-shrink-0">
+            <div key={act.id} className="bg-[#1C2025]/50 border border-[#1A2640]/50 shadow-[0_1px_2px_rgba(0,0,0,0.05)] rounded-2xl p-5 flex items-center justify-between gap-4 hover:bg-[#1C2025]/80 transition-colors">
+              <div className="flex items-center gap-4 min-w-[200px]">
+                <div className="w-11 h-11 rounded-full border-2 border-[#1A2640] flex items-center justify-center flex-shrink-0 overflow-hidden bg-[#070B10]">
                   {act.avatar ? (
-                    <Image src={act.avatar} alt={act.user} width={36} height={36} className="w-full h-full object-cover" />
+                    <Image src={act.avatar} alt={act.user} width={44} height={44} className="w-full h-full object-cover" />
                   ) : (
-                    <div className="w-full h-full bg-[#02050f]/60" />
+                    <User size={20} className="text-slate-500" />
                   )}
                 </div>
-                <div className="overflow-hidden">
-                  <p className="text-xs font-bold text-white leading-none">{act.user}</p>
-                  <span className="text-[9px] font-extrabold text-slate-500 uppercase tracking-wider block mt-1">{act.tag}</span>
+                <div>
+                  <p className="text-[14px] font-bold text-white leading-tight">{act.user}</p>
+                  <span className="text-[10px] font-bold text-[#5A7090] uppercase tracking-[0.5px] mt-1 block">
+                    {act.tag}
+                  </span>
                 </div>
               </div>
 
-              {/* Action Description */}
-              <div className="flex-1 text-xs text-slate-300 font-medium truncate max-w-md" dangerouslySetInnerHTML={{ __html: act.action }} />
+              <div className="flex-1 px-4">
+                <span className="text-[14px] text-[#8899BB] font-medium" dangerouslySetInnerHTML={{ __html: act.action }} />
+              </div>
 
-              {/* Elapsed Time & Green location */}
-              <div className="flex flex-col items-end flex-shrink-0">
-                <span className="text-[10px] text-slate-500 font-bold">{act.time}</span>
-                <span className="text-[9px] font-extrabold text-[#10b981] uppercase tracking-wider mt-1">{act.location}</span>
+              <div className="flex flex-col items-end min-w-[100px] gap-1">
+                <span className="text-[12px] text-[#5A7090] font-medium whitespace-nowrap">{act.time}</span>
+                <span className="text-[11px] font-bold text-[#10B981] uppercase tracking-[0.55px] whitespace-nowrap">
+                  {act.location}
+                </span>
               </div>
             </div>
           ))}

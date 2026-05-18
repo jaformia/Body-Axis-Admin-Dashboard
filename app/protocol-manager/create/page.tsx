@@ -138,9 +138,9 @@ export default function CreateProtocolPage() {
   };
 
   return (
-    <div className="select-none pb-12 relative">
+    <div className="select-none pb-12 relative -mt-8">
       {/* Top Breadcrumb & Actions */}
-      <div className="sticky top-0 z-50 bg-[#02050f]/60 backdrop-blur-xl pt-6 pb-4 mb-2 flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-white/5 shadow-sm">
+      <div className="sticky -top-8 z-50 bg-[#02050f]/95 backdrop-blur-xl -mx-8 px-8 pt-8 pb-4 mb-6 flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-slate-800/60 shadow-sm">
         <div>
           <div className="text-[10px] font-extrabold uppercase tracking-widest text-slate-500 mb-1">
             <Link href="/protocol-manager" className="hover:text-slate-300 transition-colors">PROTOCOL MANAGER</Link>
