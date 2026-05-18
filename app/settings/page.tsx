@@ -21,9 +21,11 @@ export default function SettingsPage() {
           {/* Avatar */}
           <div className="relative flex-shrink-0">
             <div className="w-28 h-28 rounded-2xl bg-[#0f1423] border border-slate-800 overflow-hidden flex items-center justify-center">
-              <div className="w-full h-full bg-gradient-to-t from-slate-800 to-slate-700/50 flex items-end justify-center pb-2">
-                 <User size={56} strokeWidth={1.5} className="text-slate-400 opacity-60 translate-y-2" />
-              </div>
+              <img 
+                src="/user.png" 
+                alt="Profile Avatar"
+                className="w-full h-full object-cover select-none"
+              />
             </div>
             {/* Camera badge */}
             <button className="absolute -bottom-2 -right-2 w-[34px] h-[34px] rounded-full bg-[#2dd4bf] border-[4px] border-[#141a2b] flex items-center justify-center text-[#022c22] hover:brightness-110 transition-all cursor-pointer shadow-lg">
