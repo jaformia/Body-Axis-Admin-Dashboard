@@ -1,6 +1,12 @@
+"use client";
+
+import { useState } from "react";
 import { User, Camera, Bell, Shield, CheckCircle2 } from "lucide-react";
 
 export default function SettingsPage() {
+  const [emailNotifications, setEmailNotifications] = useState(true);
+  const [subscriptionAlerts, setSubscriptionAlerts] = useState(true);
+  const [twoFactor, setTwoFactor] = useState(true);
   return (
     <div className="space-y-6 select-none pb-10">
       {/* Header */}
@@ -73,8 +79,15 @@ export default function SettingsPage() {
                 <div className="text-[13px] font-medium text-slate-200">Email Notifications</div>
                 <div className="text-[11px] text-slate-500 mt-1">Receive weekly summary reports</div>
               </div>
-              <button className="w-10 h-6 bg-[#0d332d] rounded-full flex items-center p-1 cursor-pointer transition-colors">
-                <div className="w-[16px] h-[16px] bg-[#2dd4bf] rounded-full transform translate-x-4 shadow-sm transition-transform"></div>
+              <button 
+                onClick={() => setEmailNotifications(!emailNotifications)}
+                className={`w-10 h-6 rounded-full flex items-center p-1 cursor-pointer transition-colors duration-300 ${
+                  emailNotifications ? "bg-[#0d332d]" : "bg-[#1e293b]"
+                }`}
+              >
+                <div className={`w-[16px] h-[16px] rounded-full shadow-sm transition-transform duration-300 ${
+                  emailNotifications ? "bg-[#2dd4bf] transform translate-x-4" : "bg-slate-400 transform translate-x-0"
+                }`}></div>
               </button>
             </div>
 
@@ -84,8 +97,15 @@ export default function SettingsPage() {
                 <div className="text-[13px] font-medium text-slate-200">Subscription Alerts</div>
                 <div className="text-[11px] text-slate-500 mt-1">Alerts for plan renewals & changes</div>
               </div>
-              <button className="w-10 h-6 bg-[#0d332d] rounded-full flex items-center p-1 cursor-pointer transition-colors">
-                <div className="w-[16px] h-[16px] bg-[#2dd4bf] rounded-full transform translate-x-4 shadow-sm transition-transform"></div>
+              <button 
+                onClick={() => setSubscriptionAlerts(!subscriptionAlerts)}
+                className={`w-10 h-6 rounded-full flex items-center p-1 cursor-pointer transition-colors duration-300 ${
+                  subscriptionAlerts ? "bg-[#0d332d]" : "bg-[#1e293b]"
+                }`}
+              >
+                <div className={`w-[16px] h-[16px] rounded-full shadow-sm transition-transform duration-300 ${
+                  subscriptionAlerts ? "bg-[#2dd4bf] transform translate-x-4" : "bg-slate-400 transform translate-x-0"
+                }`}></div>
               </button>
             </div>
           </div>
@@ -101,12 +121,26 @@ export default function SettingsPage() {
           </div>
 
           {/* 2FA Badge */}
-          <div className="w-full bg-[#08221d]/60 border border-[#059669]/30 rounded-xl p-4 flex items-center justify-between mb-8">
+          <div className={`w-full rounded-xl p-4 flex items-center justify-between mb-8 transition-all duration-300 ${
+            twoFactor 
+              ? "bg-[#08221d]/60 border border-[#059669]/30" 
+              : "bg-[#1e293b]/20 border border-slate-800/80"
+          }`}>
             <div className="flex items-center gap-3">
-              <CheckCircle2 size={18} className="text-[#2dd4bf]" />
+              <CheckCircle2 size={18} className={`transition-colors duration-300 ${twoFactor ? "text-[#2dd4bf]" : "text-slate-500"}`} />
               <span className="text-[13px] font-medium text-slate-200">Two-Factor Authentication</span>
             </div>
-            <span className="text-[10px] font-bold text-[#2dd4bf] tracking-wider">ACTIVE</span>
+            
+            <button 
+              onClick={() => setTwoFactor(!twoFactor)}
+              className={`w-10 h-6 rounded-full flex items-center p-1 cursor-pointer transition-colors duration-300 ${
+                twoFactor ? "bg-[#0d332d]" : "bg-[#1e293b]"
+              }`}
+            >
+              <div className={`w-[16px] h-[16px] rounded-full shadow-sm transition-transform duration-300 ${
+                twoFactor ? "bg-[#2dd4bf] transform translate-x-4" : "bg-slate-400 transform translate-x-0"
+              }`}></div>
+            </button>
           </div>
 
           {/* Login Activity */}
