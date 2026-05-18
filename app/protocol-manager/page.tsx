@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Plus, Flame, Dumbbell, Users, User, TrendingUp, Edit, Trash2, ArrowLeft, ArrowRight, Edit3 } from "lucide-react";
+import { Plus, Flame, Dumbbell, Users, User, TrendingUp, Edit, Trash2, ArrowLeft, ArrowRight, Edit3, AlertTriangle } from "lucide-react";
 
 // SVGs for card backgrounds
 const FlameOutline = () => (
@@ -53,6 +53,7 @@ const INITIAL_PROTOCOLS = [
 
 export default function ProtocolManagerPage() {
   const [protocols, setProtocols] = useState(INITIAL_PROTOCOLS);
+  const [protocolToDelete, setProtocolToDelete] = useState<string | null>(null);
 
   const toggleStatus = (id: string) => {
     setProtocols(protocols.map(p => p.id === id ? { ...p, active: !p.active } : p));
@@ -195,10 +196,13 @@ export default function ProtocolManagerPage() {
                   </td>
                   <td className="py-4 px-6">
                     <div className="flex items-center justify-end gap-4">
-                      <button className="text-slate-500 hover:text-white transition-colors duration-200">
+                      <Link href="/protocol-manager/create" className="text-slate-500 hover:text-white transition-colors duration-200 cursor-pointer">
                         <Edit3 size={18} />
-                      </button>
-                      <button className="text-slate-500 hover:text-rose-400 transition-colors duration-200">
+                      </Link>
+                      <button 
+                        onClick={() => setProtocolToDelete(protocol.id)}
+                        className="text-slate-500 hover:text-rose-400 transition-colors duration-200 cursor-pointer"
+                      >
                         <Trash2 size={18} />
                       </button>
                     </div>
@@ -223,6 +227,57 @@ export default function ProtocolManagerPage() {
           </div>
         </div>
       </div>
+
+      {/* Delete Warning Modal Popup Overlay */}
+      {protocolToDelete !== null && (
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-md animate-in fade-in duration-200"
+          onClick={() => setProtocolToDelete(null)}
+        >
+          <div 
+            className="w-full max-w-md bg-[#0c111d] border border-red-500/20 rounded-2xl p-6 shadow-[0_20px_50px_rgba(239,68,68,0.12)] mx-4 select-none animate-in scale-in duration-200"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Header / Warning Icon */}
+            <div className="flex items-center gap-4 mb-4">
+              <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/20 text-red-500">
+                <AlertTriangle size={24} />
+              </div>
+              <div>
+                <h3 className="text-base font-bold text-white tracking-wide">Delete Protocol?</h3>
+                <p className="text-slate-400 text-xs mt-0.5">This action is permanent and cannot be undone.</p>
+              </div>
+            </div>
+
+            {/* Protocol detail info panel */}
+            <div className="bg-[#121826] border border-slate-800/80 rounded-xl p-3.5 mb-6">
+              <span className="text-[9px] font-extrabold text-slate-500 uppercase tracking-widest block mb-1">PROTOCOL TO REMOVE</span>
+              <span className="text-sm font-bold text-white block">
+                {protocols.find(p => p.id === protocolToDelete)?.name}
+              </span>
+            </div>
+
+            {/* Actions button row */}
+            <div className="flex items-center justify-end gap-3.5">
+              <button 
+                onClick={() => setProtocolToDelete(null)}
+                className="px-4 py-2 text-xs font-semibold text-slate-400 hover:text-white bg-slate-800/60 hover:bg-slate-800 rounded-lg transition-colors cursor-pointer"
+              >
+                Cancel
+              </button>
+              <button 
+                onClick={() => {
+                  setProtocols(protocols.filter(p => p.id !== protocolToDelete));
+                  setProtocolToDelete(null);
+                }}
+                className="px-4.5 py-2 text-xs font-bold text-white bg-rose-600 hover:bg-rose-700 rounded-lg transition-all duration-200 cursor-pointer shadow-[0_0_15px_rgba(225,29,72,0.35)]"
+              >
+                Confirm Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
