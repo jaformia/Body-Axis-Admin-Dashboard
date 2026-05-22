@@ -297,7 +297,7 @@ export default function DashboardHome() {
 
               {/* Bar */}
               <div 
-                className={`w-full max-w-[65px] rounded-t-md transition-all duration-700 ease-in-out animate-bar-grow origin-bottom group-hover:scale-y-[1.03] group-hover:brightness-110 ${
+                className={`w-full max-w-[65px] rounded-t-md transition-[height,background-color,box-shadow,filter,opacity] duration-700 ease-in-out animate-bar-grow origin-bottom group-hover:scale-y-[1.03] group-hover:brightness-110 ${
                   item.isHighlighted 
                     ? "bg-gradient-to-b from-[#9945FF] to-[#19FB9B] group-hover:shadow-[0_0_20px_rgba(153,69,255,0.4)]" 
                     : "bg-gradient-to-b from-[#5243aa]/40 to-[#14f195]/40 group-hover:from-[#5243aa]/70 group-hover:to-[#14f195]/70 group-hover:shadow-[0_0_15px_rgba(20,241,149,0.25)]"

@@ -111,5 +111,54 @@ body {
   cursor: pointer;
 }
 
+/* Notification Bell Ringing Wiggle Animation */
+@keyframes bellRing {
+  0%, 100% { transform: rotate(0); }
+  10% { transform: rotate(-15deg); }
+  20% { transform: rotate(12deg); }
+  30% { transform: rotate(-12deg); }
+  40% { transform: rotate(9deg); }
+  50% { transform: rotate(-7deg); }
+  60% { transform: rotate(5deg); }
+  70% { transform: rotate(-3deg); }
+  80% { transform: rotate(2deg); }
+  90% { transform: rotate(-1deg); }
+}
+
+.animate-bell-ring {
+  animation: bellRing 0.85s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  transform-origin: top center;
+}
+
+/* Toast Animations */
+@keyframes toastSlideIn {
+  0% {
+    transform: translateY(1rem) scale(0.9);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-toast-in {
+  animation: toastSlideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes toastProgress {
+  0% {
+    width: 100%;
+  }
+  100% {
+    width: 0%;
+  }
+}
+
+.animate-toast-progress {
+  animation: toastProgress 5s linear forwards;
+}
+
+
 
 

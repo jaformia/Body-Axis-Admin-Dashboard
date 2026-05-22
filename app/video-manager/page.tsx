@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { 
   Search, Plus, Filter, CalendarDays, ChevronDown, 
-  Trash2, ChevronLeft, ChevronRight, AlertTriangle, X 
+  Trash2, ChevronLeft, ChevronRight, AlertTriangle, X,
+  FileVideo
 } from "lucide-react";
 import Link from "next/link";
 
@@ -13,19 +14,34 @@ interface VideoAsset {
   size: string;
   date: string;
   status: "Uploaded" | "Processing" | "Error";
+  thumbnail?: string | null;
 }
+
+const DEFAULT_VIDEOS: VideoAsset[] = [
+  { id: "EX-260001", name: "Supine Pelvic Clocks", size: "248.5 MB", date: "10/30/2025", status: "Uploaded" },
+  { id: "EX-260002", name: "Thoracic Extension", size: "248.5 MB", date: "10/30/2025", status: "Uploaded" },
+  { id: "EX-260002", name: "Long-Lever Hamstring Bridge", size: "248.5 MB", date: "10/30/2025", status: "Uploaded" },
+  { id: "EX-260002", name: "Long-Lever Hamstring Bridge", size: "248.5 MB", date: "10/30/2025", status: "Processing" },
+  { id: "EX-260002", name: "Long-Lever Hamstring Bridge", size: "248.5 MB", date: "10/30/2025", status: "Processing" },
+  { id: "EX-260002", name: "Long-Lever Hamstring Bridge", size: "248.5 MB", date: "10/30/2025", status: "Error" },
+  { id: "EX-260002", name: "Long-Lever Hamstring Bridge", size: "248.5 MB", date: "10/30/2025", status: "Error" },
+];
 
 export default function VideoManagerPage() {
   // State for live video catalog
-  const [videos, setVideos] = useState<VideoAsset[]>([
-    { id: "EX-260001", name: "Supine Pelvic Clocks", size: "248.5 MB", date: "10/30/2025", status: "Uploaded" },
-    { id: "EX-260002", name: "Thoracic Extension", size: "248.5 MB", date: "10/30/2025", status: "Uploaded" },
-    { id: "EX-260002", name: "Long-Lever Hamstring Bridge", size: "248.5 MB", date: "10/30/2025", status: "Uploaded" },
-    { id: "EX-260002", name: "Long-Lever Hamstring Bridge", size: "248.5 MB", date: "10/30/2025", status: "Processing" },
-    { id: "EX-260002", name: "Long-Lever Hamstring Bridge", size: "248.5 MB", date: "10/30/2025", status: "Processing" },
-    { id: "EX-260002", name: "Long-Lever Hamstring Bridge", size: "248.5 MB", date: "10/30/2025", status: "Error" },
-    { id: "EX-260002", name: "Long-Lever Hamstring Bridge", size: "248.5 MB", date: "10/30/2025", status: "Error" },
-  ]);
+  const [videos, setVideos] = useState<VideoAsset[]>(DEFAULT_VIDEOS);
+
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem("custom_video_assets");
+      if (stored) {
+        const customVideos: VideoAsset[] = JSON.parse(stored);
+        setVideos([...customVideos, ...DEFAULT_VIDEOS]);
+      }
+    } catch (e) {
+      console.error("Failed to load custom assets", e);
+    }
+  }, []);
 
   // Reactive search & filter states
   const [searchQuery, setSearchQuery] = useState("");
@@ -70,6 +86,35 @@ export default function VideoManagerPage() {
     // Simulate brief API network latency
     setTimeout(() => {
       setVideos((prev) => prev.filter((v) => v !== videoToDelete));
+      
+      // Also delete from localStorage if it's a custom asset
+      try {
+        const stored = localStorage.getItem("custom_video_assets");
+        if (stored) {
+          const customVideos: VideoAsset[] = JSON.parse(stored);
+          const updated = customVideos.filter(
+            (v) => !(v.id === videoToDelete.id && v.name === videoToDelete.name)
+          );
+          localStorage.setItem("custom_video_assets", JSON.stringify(updated));
+        }
+      } catch (err) {
+        console.error("Failed to delete asset from localStorage:", err);
+      }
+
+      // Dispatch global notification event
+      try {
+        const notifEvent = new CustomEvent("add-notification", {
+          detail: {
+            title: "Video Asset Deleted",
+            message: `"${videoToDelete.name}" (${videoToDelete.id}) was successfully deleted.`,
+            type: "warning"
+          }
+        });
+        window.dispatchEvent(notifEvent);
+      } catch (err) {
+        console.error("Failed to dispatch deletion notification:", err);
+      }
+
       setIsDeleting(false);
       setIsDeleteModalOpen(false);
       setVideoToDelete(null);
@@ -178,7 +223,18 @@ export default function VideoManagerPage() {
               {filteredVideos.map((vid, idx) => (
                 <tr key={idx} className="border-b border-slate-800/40 hover:bg-[#1b2237]/50 transition-colors group">
                   <td className="py-4 px-6 text-xs text-slate-400 font-medium">{vid.id}</td>
-                  <td className="py-4 px-6 text-sm text-slate-200 font-bold">{vid.name}</td>
+                  <td className="py-4 px-6 text-sm text-slate-200 font-bold">
+                    <div className="flex items-center gap-3">
+                      <div className="w-12 h-8 rounded-lg bg-slate-950 border border-slate-800/80 overflow-hidden flex items-center justify-center shrink-0 shadow-inner">
+                        {vid.thumbnail ? (
+                          <img src={vid.thumbnail} alt={vid.name} className="w-full h-full object-cover" />
+                        ) : (
+                          <FileVideo size={14} className="text-slate-500" />
+                        )}
+                      </div>
+                      <span className="truncate">{vid.name}</span>
+                    </div>
+                  </td>
                   <td className="py-4 px-6 text-xs text-slate-400 font-medium">{vid.size}</td>
                   <td className="py-4 px-6 text-xs text-slate-400 font-medium">{vid.date}</td>
                   <td className="py-4 px-6">
