@@ -47,7 +47,7 @@ export default function AddExercisePage() {
 
   return (
     <div className="select-none pb-12 relative -mt-8">
-      
+
       {/* Header */}
       <div className="sticky -top-8 z-50 bg-[#02050f]/95 backdrop-blur-xl -mx-8 px-8 pt-8 pb-4 mb-6 flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-slate-800/60 shadow-sm">
         <div>
@@ -62,7 +62,7 @@ export default function AddExercisePage() {
           <button className="px-6 py-2.5 rounded-xl font-bold text-sm text-slate-300 bg-transparent border border-slate-700 hover:bg-slate-800 hover:text-white transition-all duration-200 cursor-pointer">
             Save Draft
           </button>
-          <button 
+          <button
             onClick={handlePublish}
             className="px-6 py-2.5 rounded-xl font-bold text-sm text-white bg-[#2563eb] hover:bg-[#1d4ed8] shadow-[0_0_20px_rgba(37,99,235,0.3)] transition-all duration-200 cursor-pointer"
           >
@@ -74,19 +74,19 @@ export default function AddExercisePage() {
       {/* Main Container */}
       <div className="mt-6">
         <div className="glass-card bg-[#1e2330] rounded-2xl p-6 lg:p-8 shadow-lg border border-slate-800/40">
-          
+
           <div className="flex items-center gap-2 mb-8 pb-4 border-b border-[#0d9488]/30">
             <FileText size={20} className="text-cyan-400" />
             <h3 className="text-[11px] font-extrabold text-slate-300 uppercase tracking-widest">EXERCISE METADATA</h3>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
-            
+
             {/* EXERCISE ID */}
             <div>
               <label className="block text-[10px] font-extrabold text-slate-400 uppercase tracking-wider mb-2">EXERCISE ID</label>
-              <input 
-                type="text" 
+              <input
+                type="text"
                 value={exerciseId}
                 onChange={(e) => setExerciseId(e.target.value)}
                 className="w-full bg-[#111621] border-none rounded-xl px-4 py-3.5 text-sm text-slate-300 focus:outline-none focus:ring-1 focus:ring-blue-500/50 transition-colors"
@@ -96,8 +96,8 @@ export default function AddExercisePage() {
             {/* EXERCISE NAME */}
             <div>
               <label className="block text-[10px] font-extrabold text-slate-400 uppercase tracking-wider mb-2">EXERCISE NAME</label>
-              <input 
-                type="text" 
+              <input
+                type="text"
                 value={exerciseName}
                 onChange={(e) => setExerciseName(e.target.value)}
                 className="w-full bg-[#111621] border-none rounded-xl px-4 py-3.5 text-sm text-slate-300 focus:outline-none focus:ring-1 focus:ring-blue-500/50 transition-colors"
@@ -107,8 +107,8 @@ export default function AddExercisePage() {
             {/* SETS */}
             <div>
               <label className="block text-[10px] font-extrabold text-slate-400 uppercase tracking-wider mb-2">SETS</label>
-              <input 
-                type="text" 
+              <input
+                type="text"
                 value={sets}
                 onChange={(e) => setSets(e.target.value)}
                 className="w-full bg-[#111621] border-none rounded-xl px-4 py-3.5 text-sm text-slate-300 focus:outline-none focus:ring-1 focus:ring-blue-500/50 transition-colors"
@@ -118,8 +118,8 @@ export default function AddExercisePage() {
             {/* REPS */}
             <div>
               <label className="block text-[10px] font-extrabold text-slate-400 uppercase tracking-wider mb-2">REPS</label>
-              <input 
-                type="text" 
+              <input
+                type="text"
                 value={reps}
                 onChange={(e) => setReps(e.target.value)}
                 className="w-full bg-[#111621] border-none rounded-xl px-4 py-3.5 text-sm text-slate-300 focus:outline-none focus:ring-1 focus:ring-blue-500/50 transition-colors"
@@ -129,8 +129,8 @@ export default function AddExercisePage() {
             {/* PRIMARY INTENT */}
             <div>
               <label className="block text-[10px] font-extrabold text-slate-400 uppercase tracking-wider mb-2">PRIMARY INTENT</label>
-              <input 
-                type="text" 
+              <input
+                type="text"
                 value={primaryIntent}
                 onChange={(e) => setPrimaryIntent(e.target.value)}
                 className="w-full bg-[#111621] border-none rounded-xl px-4 py-3.5 text-sm text-slate-300 focus:outline-none focus:ring-1 focus:ring-blue-500/50 transition-colors"
@@ -140,8 +140,8 @@ export default function AddExercisePage() {
             {/* SECONDARY BENEFITS */}
             <div>
               <label className="block text-[10px] font-extrabold text-slate-400 uppercase tracking-wider mb-2">SECONDARY BENEFITS</label>
-              <input 
-                type="text" 
+              <input
+                type="text"
                 value={secondaryBenefits}
                 onChange={(e) => setSecondaryBenefits(e.target.value)}
                 className="w-full bg-[#111621] border-none rounded-xl px-4 py-3.5 text-sm text-slate-300 focus:outline-none focus:ring-1 focus:ring-blue-500/50 transition-colors"
@@ -151,8 +151,8 @@ export default function AddExercisePage() {
             {/* PROGRESSION */}
             <div>
               <label className="block text-[10px] font-extrabold text-slate-400 uppercase tracking-wider mb-2">PROGRESSION</label>
-              <input 
-                type="text" 
+              <input
+                type="text"
                 value={progression}
                 onChange={(e) => setProgression(e.target.value)}
                 className="w-full bg-[#111621] border-none rounded-xl px-4 py-3.5 text-sm text-slate-300 focus:outline-none focus:ring-1 focus:ring-blue-500/50 transition-colors"
@@ -162,8 +162,8 @@ export default function AddExercisePage() {
             {/* REGRESSION */}
             <div>
               <label className="block text-[10px] font-extrabold text-slate-400 uppercase tracking-wider mb-2">REGRESSION</label>
-              <input 
-                type="text" 
+              <input
+                type="text"
                 value={regression}
                 onChange={(e) => setRegression(e.target.value)}
                 className="w-full bg-[#111621] border-none rounded-xl px-4 py-3.5 text-sm text-slate-300 focus:outline-none focus:ring-1 focus:ring-blue-500/50 transition-colors"
@@ -175,7 +175,7 @@ export default function AddExercisePage() {
               <label className="block text-[10px] font-extrabold text-slate-400 uppercase tracking-wider mb-2">EQUIPMENT NEEDED</label>
               <div className="flex gap-3 mb-3">
                 <div className="relative flex-1">
-                  <select 
+                  <select
                     value={equipment}
                     onChange={(e) => setEquipment(e.target.value)}
                     className="w-full appearance-none bg-[#111621] border-none rounded-xl px-4 py-3.5 text-sm text-slate-300 focus:outline-none focus:ring-1 focus:ring-blue-500/50 transition-colors cursor-pointer"
@@ -187,7 +187,7 @@ export default function AddExercisePage() {
                   </select>
                   <ChevronDown size={14} className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none" />
                 </div>
-                <button 
+                <button
                   onClick={() => handleAddTag(equipment, equipmentTags, setEquipmentTags)}
                   className="flex items-center justify-center gap-1.5 bg-[#3b82f6] hover:bg-[#2563eb] text-white px-5 py-3 rounded-xl font-bold text-sm transition-colors shadow-[0_0_15px_rgba(59,130,246,0.5)] cursor-pointer"
                 >
@@ -208,7 +208,7 @@ export default function AddExercisePage() {
               <label className="block text-[10px] font-extrabold text-slate-400 uppercase tracking-wider mb-2">PHASE</label>
               <div className="flex gap-3 mb-3">
                 <div className="relative flex-1">
-                  <select 
+                  <select
                     value={phase}
                     onChange={(e) => setPhase(e.target.value)}
                     className="w-full appearance-none bg-[#111621] border-none rounded-xl px-4 py-3.5 text-sm text-slate-300 focus:outline-none focus:ring-1 focus:ring-blue-500/50 transition-colors cursor-pointer"
@@ -219,7 +219,7 @@ export default function AddExercisePage() {
                   </select>
                   <ChevronDown size={14} className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none" />
                 </div>
-                <button 
+                <button
                   onClick={() => handleAddTag(phase, phaseTags, setPhaseTags)}
                   className="flex items-center justify-center gap-1.5 bg-[#3b82f6] hover:bg-[#2563eb] text-white px-5 py-3 rounded-xl font-bold text-sm transition-colors shadow-[0_0_15px_rgba(59,130,246,0.5)] cursor-pointer"
                 >
@@ -240,7 +240,7 @@ export default function AddExercisePage() {
               <label className="block text-[10px] font-extrabold text-slate-400 uppercase tracking-wider mb-2">TARGET AREA</label>
               <div className="flex gap-3 mb-3">
                 <div className="relative flex-1">
-                  <select 
+                  <select
                     value={targetArea}
                     onChange={(e) => setTargetArea(e.target.value)}
                     className="w-full appearance-none bg-[#111621] border-none rounded-xl px-4 py-3.5 text-sm text-slate-300 focus:outline-none focus:ring-1 focus:ring-blue-500/50 transition-colors cursor-pointer"
@@ -253,7 +253,7 @@ export default function AddExercisePage() {
                   </select>
                   <ChevronDown size={14} className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none" />
                 </div>
-                <button 
+                <button
                   onClick={() => handleAddTag(targetArea, targetAreaTags, setTargetAreaTags)}
                   className="flex items-center justify-center gap-1.5 bg-[#3b82f6] hover:bg-[#2563eb] text-white px-5 py-3 rounded-xl font-bold text-sm transition-colors shadow-[0_0_15px_rgba(59,130,246,0.5)] cursor-pointer"
                 >
@@ -274,7 +274,7 @@ export default function AddExercisePage() {
               <label className="block text-[10px] font-extrabold text-slate-400 uppercase tracking-wider mb-2">USER CASE</label>
               <div className="flex gap-3 mb-3">
                 <div className="relative flex-1">
-                  <select 
+                  <select
                     value={userCase}
                     onChange={(e) => setUserCase(e.target.value)}
                     className="w-full appearance-none bg-[#111621] border-none rounded-xl px-4 py-3.5 text-sm text-slate-300 focus:outline-none focus:ring-1 focus:ring-blue-500/50 transition-colors cursor-pointer"
@@ -285,7 +285,7 @@ export default function AddExercisePage() {
                   </select>
                   <ChevronDown size={14} className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none" />
                 </div>
-                <button 
+                <button
                   onClick={() => handleAddTag(userCase, userCaseTags, setUserCaseTags)}
                   className="flex items-center justify-center gap-1.5 bg-[#3b82f6] hover:bg-[#2563eb] text-white px-5 py-3 rounded-xl font-bold text-sm transition-colors shadow-[0_0_15px_rgba(59,130,246,0.5)] cursor-pointer"
                 >
@@ -300,7 +300,7 @@ export default function AddExercisePage() {
                 ))}
               </div>
             </div>
-            
+
             {/* VIDEO TUTORIAL */}
             <div className="flex flex-col h-full">
               <label className="block text-[10px] font-extrabold text-slate-400 uppercase tracking-wider mb-2">VIDEO TUTORIAL</label>
@@ -313,7 +313,7 @@ export default function AddExercisePage() {
             {/* BENEFITS */}
             <div className="flex flex-col h-full">
               <label className="block text-[10px] font-extrabold text-slate-400 uppercase tracking-wider mb-2">BENEFITS</label>
-              <textarea 
+              <textarea
                 value={benefits}
                 onChange={(e) => setBenefits(e.target.value)}
                 className="flex-1 min-h-[140px] w-full bg-[#111621] border-none rounded-xl p-4 text-sm text-slate-300 focus:outline-none focus:ring-1 focus:ring-blue-500/50 transition-colors resize-none leading-relaxed"
